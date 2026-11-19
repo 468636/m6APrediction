@@ -1,6 +1,6 @@
 Package: m6APrediction
 Type: Package
-Title: Prediction of m6A RNA Modification Sites with a Random Forest Model
+Title: Random Forest Prediction of m6A RNA Modification Sites
 Version: 1.0.0
 Authors@R:
     person("Yihan", "Ma", email = "yihan.ma24@student.xjtlu.edu.cn", role = c("aut", "cre"))
