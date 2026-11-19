@@ -8,8 +8,8 @@ prediction_multiple(ml_fit, feature_df, positive_threshold = 0.5)
 }
 \arguments{
 \item{ml_fit}{A fitted \code{randomForest} classification model. The model
-shipped in the package is loaded via the package function
-\code{load_rf_model()}.}
+shipped in the package is loaded via
+\code{readRDS(system.file("extdata", "rf_fit.rds", package = "m6APrediction"))}.}
 
 \item{feature_df}{A data frame with columns: \code{gc_content}, \code{RNA_type},
 \code{RNA_region}, \code{exon_length}, \code{distance_to_junction},
@@ -30,7 +30,8 @@ features, returning the input table augmented with the predicted
 m6A probability and binary status.
 }
 \examples{
-rf_fit <- load_rf_model()
+rf_fit <- readRDS(system.file("extdata", "rf_fit.rds",
+                               package = "m6APrediction"))
 example_df <- read.csv(
   system.file("extdata", "m6A_input_example.csv",
               package = "m6APrediction"),

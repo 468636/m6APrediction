@@ -18,8 +18,8 @@ prediction_single(
 }
 \arguments{
 \item{ml_fit}{A fitted \code{randomForest} classification model. The model
-shipped in the package is loaded via the package function
-\code{load_rf_model()}.}
+shipped in the package is loaded via
+\code{readRDS(system.file("extdata", "rf_fit.rds", package = "m6APrediction"))}.}
 
 \item{gc_content}{Numeric. GC content of the surrounding region in
 \verb{[0, 1]}.}
@@ -56,7 +56,8 @@ for one site whose features are supplied as separate arguments rather
 than a table.
 }
 \examples{
-rf_fit <- load_rf_model()
+rf_fit <- readRDS(system.file("extdata", "rf_fit.rds",
+                               package = "m6APrediction"))
 prediction_single(
   rf_fit,
   gc_content = 0.66,

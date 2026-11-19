@@ -14,5 +14,6 @@ Read the pre-trained random forest classifier stored in
 \code{inst/extdata/rf_fit.rds}.
 }
 \examples{
-rf_fit <- load_rf_model()
+rf_fit <- readRDS(system.file("extdata", "rf_fit.rds",
+                               package = "m6APrediction"))
 }

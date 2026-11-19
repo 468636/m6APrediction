@@ -8,33 +8,6 @@
 NULL
 
 
-#' Encode a 5-mer DNA sequence into per-position nucleotide factors
-#'
-#' Split each 5-mer string in a character vector into five single-base
-#' columns (`nt_pos1` ... `nt_pos5`), converted to factors with the levels
-#' A, T, C, G. This is the feature encoding expected by the random forest
-#' model shipped with the package.
-#'
-#' @param dna_strings A character vector of 5-mer sequences (A/T/C/G).
-#'
-#' @return A data frame whose columns are `nt_pos1` ... `nt_pos5`, each a
-#'   factor with levels `c("A", "T", "C", "G")`.
-#'
-#' @keywords internal
-dna_encoding <- function(dna_strings) {
-  nn <- nchar(dna_strings[1])
-  seq_m <- matrix(
-    unlist(strsplit(dna_strings, "")),
-    ncol = nn,
-    byrow = TRUE
-  )
-  colnames(seq_m) <- paste0("nt_pos", 1:nn)
-  seq_df <- as.data.frame(seq_m, stringsAsFactors = FALSE)
-  seq_df[] <- lapply(seq_df, factor, levels = c("A", "T", "C", "G"))
-  return(seq_df)
-}
-
-
 #' Predict m6A status for a feature table (multiple sites)
 #'
 #' Apply the package random forest model to a data frame of m6A-site
@@ -42,8 +15,8 @@ dna_encoding <- function(dna_strings) {
 #' m6A probability and binary status.
 #'
 #' @param ml_fit A fitted `randomForest` classification model. The model
-#'   shipped in the package is loaded via the package function
-#'   `load_rf_model()`.
+#'   shipped in the package is loaded via
+#'   `readRDS(system.file("extdata", "rf_fit.rds", package = "m6APrediction"))`.
 #' @param feature_df A data frame with columns: `gc_content`, `RNA_type`,
 #'   `RNA_region`, `exon_length`, `distance_to_junction`,
 #'   `evolutionary_conservation`, `DNA_5mer`.
@@ -58,7 +31,8 @@ dna_encoding <- function(dna_strings) {
 #' @export
 #'
 #' @examples
-#' rf_fit <- load_rf_model()
+#' rf_fit <- readRDS(system.file("extdata", "rf_fit.rds",
+#'                                package = "m6APrediction"))
 #' example_df <- read.csv(
 #'   system.file("extdata", "m6A_input_example.csv",
 #'               package = "m6APrediction"),
@@ -119,7 +93,8 @@ prediction_multiple <- function(ml_fit, feature_df, positive_threshold = 0.5) {
 #' @export
 #'
 #' @examples
-#' rf_fit <- load_rf_model()
+#' rf_fit <- readRDS(system.file("extdata", "rf_fit.rds",
+#'                                package = "m6APrediction"))
 #' prediction_single(
 #'   rf_fit,
 #'   gc_content = 0.66,
@@ -164,7 +139,8 @@ prediction_single <- function(ml_fit, gc_content, RNA_type, RNA_region,
 #' @export
 #'
 #' @examples
-#' rf_fit <- load_rf_model()
+#' rf_fit <- readRDS(system.file("extdata", "rf_fit.rds",
+#'                                package = "m6APrediction"))
 load_rf_model <- function() {
   readRDS(system.file("extdata", "rf_fit.rds", package = "m6APrediction"))
 }
