@@ -99,8 +99,9 @@ and predicted status.
 
 ## Model Performance
 
-The Random Forest model was evaluated using the m6A feature dataset. Its performance
-is summarised using ROC and precision-recall curves.
+The Random Forest model was evaluated on a held-out 20% test split (seed 123;
+2,273 positive and 7,338 negative sites). Its performance is summarised using
+ROC and precision-recall curves.
 
 ![ROC curve](man/figures/roc.png)
 
@@ -108,8 +109,8 @@ is summarised using ROC and precision-recall curves.
 
 The reported performance values are:
 
-- ROC AUC: **0.996**
-- PRC AUC: **0.988**
+- ROC AUC: **0.887**
+- PRC AUC: **0.707**
 
 ## Features Used
 
