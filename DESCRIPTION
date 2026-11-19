@@ -12,9 +12,9 @@ Description: m6APrediction predicts whether a candidate RNA site is an N6-methyl
 License: MIT + file LICENSE
 Encoding: UTF-8
 Depends:
-    R (>= 3.5.0),
-    randomForest
+    R (>= 3.5.0)
 Imports:
+    randomForest,
     stats
 Suggests:
     knitr,

@@ -84,7 +84,7 @@ For example:
 ```r
 prediction_single(
   rf_fit,
-  GC_content = 0.66,
+  gc_content = 0.66,
   RNA_type = "lncRNA",
   RNA_region = "intron",
   exon_length = 0,
